@@ -13,10 +13,10 @@ ExtraKeybinds.TacticalScreenTurnSequenceBarModule_addSkillToList = TacticalScree
 TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity, _skill, _label)
 {
 	ExtraKeybinds.TacticalScreenTurnSequenceBarModule_addSkillToList.call(this, _entity, _skill, _label);
-	var keybindTextObject = this.mSkillsContainer.find('.l-skill > .skill > .text-layer > .numeration-label:first')
+	var keybindTextObject = this.mSkillsContainer.find('.l-skill > .skill > .text-layer > .numeration-label:last')
 	if (keybindTextObject != undefined && ExtraKeybinds.Skills.indexOf(_skill.id) != -1)
 	{
-		keybindTextObject.html(keybindTextObject.html() + '/' + MSU.getSettingValue(ExtraKeybinds.ID, MSU.captializeFirst(_skill.id.replace("actives.", ""))));
+		keybindTextObject.html(keybindTextObject.html() + '/' + MSU.Key.capitalizeKeyString(MSU.getSettingValue(ExtraKeybinds.ID, MSU.capitalizeFirst(_skill.id.replace("actives.", "")))));
 	}
 }
 
@@ -31,8 +31,7 @@ ExtraKeybinds.TacticalScreenTurnSequenceBarModule_createDIV = TacticalScreenTurn
 TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 {
 	ExtraKeybinds.TacticalScreenTurnSequenceBarModule_createDIV.call(this, _parentDiv);
-	this.mSwapItemsContainer = $('<div class="swap-items-container line"/>');
-	console.error(this.mSwapItemsContainer)
+	this.mSwapItemsContainer = $('<div class="swap-items-container"/>');
 	this.mSkillsContainer.before(this.mSwapItemsContainer);
 }
 
@@ -120,9 +119,11 @@ TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkills = function (_en
 
 TacticalScreenTurnSequenceBarModule.prototype.ExtraKeybinds_addSwapItemToList = function (_entityId, _item)
 {
-	var swapItemLayout = $('<div class="l-swap-item line black"/>');
+	var swapItemLayout = $('<div class="l-swap-item"/>');
 	this.mSwapItemsContainer.append(swapItemLayout);
 	swapItemLayout.bindTooltip({ contentType: 'ui-item', entityId: _entityId, itemId: _item.instanceId, itemOwner: "ExtraKeybinds" });
+
+	swapItemLayout.append($('<div class="selected-outline"/>'))
 
 	var swapItemContainer = $('<div class="swap-item"/>');
 	swapItemLayout.append(swapItemContainer);
@@ -143,10 +144,10 @@ TacticalScreenTurnSequenceBarModule.prototype.ExtraKeybinds_addSwapItemToList = 
 			var data = $(this).data('item');
 			self.ExtraKeybinds_notifybackendswapToItem(data)
 		});
-		swapItemContainer.mouseenter(this, function (_event) {
+		swapItemLayout.mouseenter(this, function (_event) {
 			$(this).removeClass('is-selected').addClass('is-selected');
 		});
-		swapItemContainer.mouseleave(this, function (_event)
+		swapItemLayout.mouseleave(this, function (_event)
 		{
 			$(this).removeClass('is-selected');
 		});
@@ -161,22 +162,15 @@ TacticalScreenTurnSequenceBarModule.prototype.ExtraKeybinds_addSwapItemToList = 
 		var textLayer = $('<div class="text-layer"/>');
 		swapItemContainer.append(textLayer);
 		var label = $('<div class="numeration-label text-font-very-small font-bold font-color-numeration-label"></div>');
-		label.html(MSU.getSettingValue(ExtraKeybinds.ID, "SwapItem" + _item.idx));
+		label.html(MSU.Key.capitalizeKeyString(MSU.getSettingValue(ExtraKeybinds.ID, "SwapItem" + _item.idx)));
 		textLayer.append(label);
 	}
-
-	var overlayLayer = $('<div class="overlay-layer"/>');
-	swapItemContainer.append(overlayLayer);
-	var overlayImage = $('<img/>');
-	overlayImage.attr('src', Path.GFX + Asset.IMAGE_SKILL_NOT_USABLE);
-	overlayImage.css({ opacity: 0 });
-	overlayLayer.append(overlayImage);
 }
 
 TacticalScreenTurnSequenceBarModule.prototype.ExtraKeybinds_notifyItemTooltipsToHide = function ()
 {
 	// notify each item skill that it is about to get deleted - hide the tooltip
-	this.mSwapItemsContainer.find('.l-item-skill').each(function(index, element) {
+	this.mSwapItemsContainer.find('.l-swap-item').each(function(index, element) {
 		var itemSkill = $(element);
 		if (itemSkill.length > 0)
 		{

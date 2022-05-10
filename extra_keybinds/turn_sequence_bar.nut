@@ -9,6 +9,7 @@
 			local ret = [];
 			foreach (i, item in entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) // can't be null
 			{
+
 				if (item.getSlotType() == ::Const.ItemSlot.Bag) continue;
 				local currentItem = entity.getItems().getItemAtSlot(item.getSlotType()) // can be null
 				local blockedItem = entity.getItems().getItemAtSlot(item.getBlockedSlotType()) // can be null
