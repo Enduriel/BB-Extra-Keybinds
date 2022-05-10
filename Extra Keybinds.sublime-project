@@ -1,0 +1,29 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		},
+		{
+			"path": "..\\data_001",
+		},
+		{
+			"path": "..\\mod_msu",
+		},
+		{
+			"path": "D:\\Other\\Modding\\BBros\\Legends\\bin\\mod_addtional_keybinds-101-1-5-1560164340"
+		},
+	],
+	"build_systems": [
+		{
+			"name" : "Update Mod",
+			"working_dir" : "$project_path",
+			"cmd": ["python", "-u", "$project_path/updateMod.py"],
+		},
+		{
+			"name" : "Update Mod and Launch",
+			"working_dir" : "$project_path",
+			"shell_cmd" : "python -u $project_path/updateMod.py && \"D:/SteamLibrary/steamapps/common/Battle Brothers/win32/BattleBrothers.exe\"",
+		}
+	],
+}
