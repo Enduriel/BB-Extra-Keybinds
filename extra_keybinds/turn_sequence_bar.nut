@@ -1,6 +1,5 @@
 ::mods_hookExactClass("ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function (o)
 {
-	::logInfo("hooked turn_sequence_bar");
 	o.ExtraKeybinds_onQueryEntityItemSwaps <- function( _entityId )
 	{
 		local entity = this.findEntityByID(this.m.CurrentEntities, _entityId).entity;
