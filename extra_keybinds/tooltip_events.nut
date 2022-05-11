@@ -12,7 +12,7 @@
 				{
 					if (section.type == "title")
 					{
-						section.text = ::MSU.String.replace(section.text, "(R)", "(" + ::Vanilla.Mod.ModSettings.getSetting("tactical_toggleTreesButton").getValue() + ")");
+						section.text = ::MSU.String.replace(section.text, "(R)", "(" + ::MSU.Vanilla.ModSettings.getSetting("tactical_toggleTreesButton").getValue() + ")");
 						break;
 					}
 				}

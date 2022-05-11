@@ -38,10 +38,10 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 ExtraKeybinds.TacticalScreenTurnSequenceBarModule_destroyDIV = TacticalScreenTurnSequenceBarModule.prototype.destroyDIV;
 TacticalScreenTurnSequenceBarModule.prototype.destroyDIV = function ()
 {
-	ExtraKeybinds.TacticalScreenTurnSequenceBarModule_destroyDIV.call(this);
 	this.mSwapItemsContainer.empty();
 	this.mSwapItemsContainer.remove();
 	this.mSwapItemsContainer = null;
+	ExtraKeybinds.TacticalScreenTurnSequenceBarModule_destroyDIV.call(this);
 }
 
 ExtraKeybinds.TacticalScreenTurnSequenceBarModule_showStatsPanel = TacticalScreenTurnSequenceBarModule.prototype.showStatsPanel;
