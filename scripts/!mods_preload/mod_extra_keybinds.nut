@@ -6,7 +6,7 @@
 
 ::mods_registerMod(::ExtraKeybinds.ID, ::ExtraKeybinds.Version, ::ExtraKeybinds.Name);
 
-::mods_queue(null, "mod_msu(>=1.0.0-beta), >mod_legends", function()
+::mods_queue(null, "mod_msu(>=1.0.0-beta), >mod_legends, !mod_autopilot", function()
 {
 	::ExtraKeybinds.Mod <- ::MSU.Class.Mod(::ExtraKeybinds.ID, ::ExtraKeybinds.Version, ::ExtraKeybinds.Name);
 
