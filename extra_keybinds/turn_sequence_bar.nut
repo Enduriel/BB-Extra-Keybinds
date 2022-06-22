@@ -5,20 +5,21 @@
 		local entity = this.findEntityByID(this.m.CurrentEntities, _entityId).entity;
 		if (entity != null && entity.isPlayerControlled())
 		{
-			local ret = [];
-			foreach (i, item in entity.getItems().m.Items[::Const.ItemSlot.Bag]) // can be null
+			local items = entity.getItems().m.Items[::Const.ItemSlot.Bag]
+			local ret = array(items.len());
+			foreach (i, item in items) // can be null
 			{
 				if (item == null || item.getSlotType() == ::Const.ItemSlot.Bag) continue;
 				local currentItem = entity.getItems().getItemAtSlot(item.getSlotType()) // can be null
 				local blockedItem = entity.getItems().getItemAtSlot(item.getBlockedSlotType()) // can be null
-				ret.push({
+				ret[i] = {
 					id = item.getID(),
 					idx = i,
 					instanceId = item.getInstanceID(),
 					imagePath = "ui/items/" + item.getIcon(),
 					isUsable = item.isChangeableInBattle() && (currentItem == null || currentItem.isChangeableInBattle() && (blockedItem == null || blockedItem.isChangeableInBattle()))
 					isAffordable = entity.getItems().isActionAffordable([currentItem, item, blockedItem])
-				});
+				};
 			}
 			return ret;
 		}

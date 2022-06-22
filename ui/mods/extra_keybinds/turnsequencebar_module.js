@@ -100,16 +100,10 @@ TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkills = function (_en
 				return;
 			}
 
-			var wasEmpty = self.mSwapItemsContainer.find('.l-skill').size() === 0;
 			self.mSwapItemsContainer.empty();
 
 			for (var i = 0; i < _bagItems.length; i++) {
 				self.ExtraKeybinds_addSwapItemToList(_entityData.id, _bagItems[i]);
-			}
-
-			if (wasEmpty && _bagItems.length > 0)
-			{
-				self.mSwapItemsContainer.css({ opacity: 0 });
 			}
 
 			self.showEntitySkillbar(_bagItems.length > 0);
@@ -121,6 +115,11 @@ TacticalScreenTurnSequenceBarModule.prototype.ExtraKeybinds_addSwapItemToList = 
 {
 	var swapItemLayout = $('<div class="l-swap-item"/>');
 	this.mSwapItemsContainer.append(swapItemLayout);
+	if (_item === null)
+	{
+		swapItemLayout.addClass('opacity-none')
+		return;
+	}
 	swapItemLayout.bindTooltip({ contentType: 'ui-item', entityId: _entityId, itemId: _item.instanceId, itemOwner: "ExtraKeybinds" });
 
 	swapItemLayout.append($('<div class="selected-outline"/>'))
