@@ -186,11 +186,13 @@ TacticalScreenTurnSequenceBarModule.prototype.ExtraKeybinds_showSwapItemsBar = f
 		this.ExtraKeybinds_notifyItemTooltipsToHide();
 	}
 
+	var self = this;
 	this.mSwapItemsContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
 	{
 		duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
 		complete: function()
 		{
+			self.mSwapItemsContainer.empty();
 		}
 	});
 }
