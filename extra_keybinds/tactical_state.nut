@@ -8,7 +8,7 @@
 			::Tactical.TurnSequenceBar.deselectActiveSkill();
 			::Tactical.getHighlighter().clear();
 			this.m.CurrentActionState = null;
-			this.m.SelectedSkillId = null;
+			this.m.SelectedSkillID = null;
 			this.updateCursorAndTooltip();
 		}
 
