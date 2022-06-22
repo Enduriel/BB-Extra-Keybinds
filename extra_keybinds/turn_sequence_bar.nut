@@ -6,10 +6,9 @@
 		if (entity != null && entity.isPlayerControlled())
 		{
 			local ret = [];
-			foreach (i, item in entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) // can't be null
+			foreach (i, item in entity.getItems().m.Items[::Const.ItemSlot.Bag]) // can be null
 			{
-
-				if (item.getSlotType() == ::Const.ItemSlot.Bag) continue;
+				if (item == null || item.getSlotType() == ::Const.ItemSlot.Bag) continue;
 				local currentItem = entity.getItems().getItemAtSlot(item.getSlotType()) // can be null
 				local blockedItem = entity.getItems().getItemAtSlot(item.getBlockedSlotType()) // can be null
 				ret.push({
