@@ -11,10 +11,10 @@
 			this.m.SelectedSkillID = null;
 			this.updateCursorAndTooltip();
 		}
-
-		return this.m.CharacterScreen.onEquipBagItem([
+		local result = this.m.CharacterScreen.onEquipBagItem([
 			_entityId,
 			_item.getInstanceID()
 		]);
+		return result != null && !("error" in result); // this is very stupid
 	};
 });

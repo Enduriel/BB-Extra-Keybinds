@@ -66,10 +66,10 @@
 	{
 		if (!this.m.TacticalScreen.isVisible()) return false;
 		local entity = this.m.TacticalScreen.getTurnSequenceBarModule().getActiveEntity();
-		if (entity == null || !entity.isPlayerControlled()) return;
+		if (entity == null || !entity.isPlayerControlled()) return false;
 		local item = entity.getItems().getItemAtBagSlot(_idx);
-		if (item == null) return;
-		this.ExtraKeybinds_onSwapToItem(entity.getID(), item)
+		if (item == null) return false;
+		return this.ExtraKeybinds_onSwapToItem(entity.getID(), item);
 	}
 
 	::ExtraKeybinds.Mod.Keybinds.addSQKeybind("SwapItem0", "f1", ::MSU.Key.State.Tactical, function()
