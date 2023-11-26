@@ -1,9 +1,8 @@
-::mods_hookNewObjectOnce("ui/screens/tooltip/tooltip_events", function (o)
+::ExtraKeybinds.HooksMod.hook("scripts/ui/screens/tooltip/tooltip_events", function (q)
 {
-	local general_queryUIElementTooltipData = o.general_queryUIElementTooltipData;
-	o.general_queryUIElementTooltipData = function( _entityId, _elementId, _elementOwner )
+	q.general_queryUIElementTooltipData = @(__original) function( _entityId, _elementId, _elementOwner )
 	{
-		local ret = general_queryUIElementTooltipData(_entityId, _elementId, _elementOwner);
+		local ret = __original(_entityId, _elementId, _elementOwner);
 
 		switch(_elementId)
 		{
@@ -40,8 +39,7 @@
 		return ret;
 	}
 
-	local tactical_queryUIItemTooltipData = o.tactical_queryUIItemTooltipData;
-	o.tactical_queryUIItemTooltipData = function( _entityId, _itemId, _itemOwner )
+	q.tactical_queryUIItemTooltipData = @(__original) function( _entityId, _itemId, _itemOwner )
 	{
 		if (_itemOwner == "ExtraKeybinds")
 		{
@@ -71,7 +69,7 @@
 			}
 			return null;
 		}
-		return tactical_queryUIItemTooltipData(_entityId, _itemId, _itemOwner);
+		return __original(_entityId, _itemId, _itemOwner);
 
 	}
 

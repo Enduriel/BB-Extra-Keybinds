@@ -4,10 +4,11 @@
 	Name = "Extra Keybinds"
 }
 
-::mods_registerMod(::ExtraKeybinds.ID, ::ExtraKeybinds.Version, ::ExtraKeybinds.Name);
+::ExtraKeybinds.HooksMod <- ::Hooks.register(::ExtraKeybinds.ID, ::ExtraKeybinds.Version, ::ExtraKeybinds.Name);
+::ExtraKeybinds.HooksMod.require("mod_msu >= 1.0.0-beta");
+::ExtraKeybinds.HooksMod.conflictWith("mod_autopilot [Use Hackflow's 'Autopilot New' instead]");
 
-::mods_queue(null, "mod_msu(>=1.0.0-beta), >mod_legends, !mod_autopilot", function()
-{
+::ExtraKeybinds.HooksMod.queue(function(){
 	::ExtraKeybinds.Mod <- ::MSU.Class.Mod(::ExtraKeybinds.ID, ::ExtraKeybinds.Version, ::ExtraKeybinds.Name);
 
 	::ExtraKeybinds.activateSkill <- function( _skillId )
@@ -106,6 +107,6 @@
 	::include("extra_keybinds/tooltip_events");
 	::include("extra_keybinds/turn_sequence_bar");
 	::include("extra_keybinds/tactical_state");
-	::mods_registerJS("extra_keybinds/turnsequencebar_module.js");
-	::mods_registerCSS("extra_keybinds/css/turnsequencebar_module.css");
+	::Hooks.registerJS("ui/mods/extra_keybinds/turnsequencebar_module.js");
+	::Hooks.registerCSS("ui/mods/extra_keybinds/css/turnsequencebar_module.css");
 });

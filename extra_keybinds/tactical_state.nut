@@ -1,6 +1,6 @@
-::mods_hookExactClass("states/tactical_state", function (o)
+::ExtraKeybinds.HooksMod.hook("scripts/states/tactical_state", function (q)
 {
-	o.ExtraKeybinds_onSwapToItem <- function ( _entityId, _item )
+	q.ExtraKeybinds_onSwapToItem <- function ( _entityId, _item )
 	{
 		if (this.m.CurrentActionState != null)
 		{

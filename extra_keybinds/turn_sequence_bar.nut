@@ -1,6 +1,6 @@
-::mods_hookExactClass("ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function (o)
+::ExtraKeybinds.HooksMod.hook("scripts/ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function (q)
 {
-	o.ExtraKeybinds_onQueryEntityItemSwaps <- function( _entityId )
+	q.ExtraKeybinds_onQueryEntityItemSwaps <- function( _entityId )
 	{
 		local entity = this.findEntityByID(this.m.CurrentEntities, _entityId).entity;
 		if (entity != null && entity.isPlayerControlled())
@@ -26,7 +26,7 @@
 		return null;
 	}
 
-	o.ExtraKeybinds_swapToItem <- function( _data )
+	q.ExtraKeybinds_swapToItem <- function( _data )
 	{
 		// _data = {entityId, idx}
 		local entityEntry = this.findEntityByID(this.m.CurrentEntities, _data.entityId);
