@@ -18,7 +18,7 @@
 					instanceId = item.getInstanceID(),
 					imagePath = "ui/items/" + item.getIcon(),
 					isUsable = item.isChangeableInBattle() && (currentItem == null || currentItem.isChangeableInBattle() && (blockedItem == null || blockedItem.isChangeableInBattle()))
-					isAffordable = entity.getItems().isActionAffordable([currentItem, item, blockedItem])
+					isAffordable = entity.getItems().isActionAffordable([item, currentItem, blockedItem])
 				};
 			}
 			return ret;
