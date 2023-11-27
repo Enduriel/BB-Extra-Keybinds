@@ -1,6 +1,6 @@
 ::ExtraKeybinds <- {
 	ID = "mod_extra_keybinds",
-	Version = "1.0.1",
+	Version = "2.0.0",
 	Name = "Extra Keybinds"
 }
 
