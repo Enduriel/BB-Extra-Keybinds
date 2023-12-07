@@ -8,7 +8,7 @@
 ::ExtraKeybinds.HooksMod.require("mod_msu >= 1.0.0-beta");
 ::ExtraKeybinds.HooksMod.conflictWith("mod_autopilot [Use Hackflow's 'Autopilot New' instead]");
 
-::ExtraKeybinds.HooksMod.queue(function(){
+::ExtraKeybinds.HooksMod.queue(">mod_msu", function(){
 	::ExtraKeybinds.Mod <- ::MSU.Class.Mod(::ExtraKeybinds.ID, ::ExtraKeybinds.Version, ::ExtraKeybinds.Name);
 
 	::ExtraKeybinds.activateSkill <- function( _skillId )
