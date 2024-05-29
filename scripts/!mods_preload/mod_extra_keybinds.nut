@@ -27,6 +27,10 @@
 		return ::ExtraKeybinds.activateSkill.call(this, "actives.recover");
 	}, "Recover");
 
+	::ExtraKeybinds.Mod.Keybinds.addSQKeybind("KeybindBlocker", "q", ::MSU.Key.State.Tactical, function() {
+		return true;
+	}, "Keybind Blocker", ::MSU.Key.KeyState.Continuous | ::MSU.Key.KeyState.Press, "Blocks vanilla/other mods' keybinds that do not use MSU Keybinds.");
+
 	::ExtraKeybinds.Mod.Keybinds.addSQKeybind("Rotation", "t", ::MSU.Key.State.Tactical, function()
 	{
 		return ::ExtraKeybinds.activateSkill.call(this, "actives.rotation");
