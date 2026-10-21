@@ -8,6 +8,11 @@
 ::ExtraKeybinds.HooksMod.require("mod_msu >= 1.0.0-beta");
 ::ExtraKeybinds.HooksMod.conflictWith("mod_autopilot [Use Hackflow's 'Autopilot New' instead]");
 
+// before MSU, so that our root_state hook runs before MSU's import of the stored keybinds
+::ExtraKeybinds.HooksMod.queue("<mod_msu", function(){
+	::include("extra_keybinds/root_state");
+});
+
 ::ExtraKeybinds.HooksMod.queue(">mod_msu", function(){
 	::ExtraKeybinds.Mod <- ::MSU.Class.Mod(::ExtraKeybinds.ID, ::ExtraKeybinds.Version, ::ExtraKeybinds.Name);
 
