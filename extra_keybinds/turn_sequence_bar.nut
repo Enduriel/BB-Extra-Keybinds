@@ -14,10 +14,8 @@
 				local blockedItem = entity.getItems().getItemAtSlot(item.getBlockedSlotType()) // can be null
 				local needsExtraSlot = [currentItem, blockedItem].filter(@(_, _i) _i != null).len() == 2;
 				local isUsable = !(needsExtraSlot && !entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag));
-				if (::Hooks.hasMod("mod_legends"))
-					isUsable = isUsable && item.isChangeableInBattle(entity) && (currentItem == null || currentItem.isChangeableInBattle(entity) && (blockedItem == null || blockedItem.isChangeableInBattle(entity)))
-				else
-					isUsable = isUsable && item.isChangeableInBattle() && (currentItem == null || currentItem.isChangeableInBattle() && (blockedItem == null || blockedItem.isChangeableInBattle()))
+				local isChangeable = @(_item) ::ExtraKeybinds.isChangeableInBattle(_item, entity);
+				isUsable = isUsable && isChangeable(item) && (currentItem == null || isChangeable(currentItem) && (blockedItem == null || isChangeable(blockedItem)))
 				ret[i] = {
 					id = item.getID(),
 					idx = i,

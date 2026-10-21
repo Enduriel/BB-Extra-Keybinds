@@ -67,6 +67,15 @@
 		return true;
 	});
 
+	// Some Legends versions take the entity as an argument, others (and vanilla) don't, so check what this one takes
+	::ExtraKeybinds.isChangeableInBattle <- function( _item, _entity )
+	{
+		local infos = _item.isChangeableInBattle.getinfos();
+		if ("parameters" in infos && infos.parameters.len() > 1) // parameters includes "this"
+			return _item.isChangeableInBattle(_entity);
+		return _item.isChangeableInBattle();
+	}
+
 	::ExtraKeybinds.swapItemKeybind <- function( _idx )
 	{
 		if (!this.m.TacticalScreen.isVisible()) return false;
